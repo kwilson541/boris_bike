@@ -8,7 +8,11 @@ attr_reader :bike
   end
 
   def return_bike(bike)
-    @bike = bike
+    if self.bike != nil
+      raise "Docking station is full!"
+    else
+      @bike = bike
+    end
   end
 
 end
