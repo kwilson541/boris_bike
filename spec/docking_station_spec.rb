@@ -22,4 +22,10 @@ describe DockingStation do
     subject.dock(bike)
     expect(subject.any_bikes_docked?).to eq true
   end
+
+  it 'if docked_bikes is empty, expect release_bike to raise error' do
+    docked_bikes = []
+    expect {subject.release_bike}.to raise_error("There are no more bikes!")
+  end
+
 end
