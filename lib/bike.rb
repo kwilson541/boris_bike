@@ -1,5 +1,13 @@
 class Bike
-  def working?
-  	true
-  end
+
+attr_reader :condition
+
+	def initialize(condition = true)
+		@condition = condition
+  	end
+
+	def working?
+		true
+	end
+
 end
