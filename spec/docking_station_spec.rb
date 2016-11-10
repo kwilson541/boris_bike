@@ -5,7 +5,7 @@ describe DockingStation do
   it {is_expected.to respond_to (:release_bike)}
 
   it 'expects bike to be working' do
-  	subject.docked_bikes << Bike.new
+  	subject.docked_bikes << double(:bike)
     bike = subject.release_bike
   	expect(bike.working?).to eq true
   end
@@ -13,13 +13,13 @@ describe DockingStation do
   it {is_expected.to respond_to(:dock).with(1).argument}
 
   it "expects bike to be docked" do
-    bike = Bike.new
+    bike = double(:bike)
     subject.dock(bike)
     expect(subject.docked_bikes).to include(bike)
   end
 
   it "expects true if there is any bike in a docked_bike array" do
-    bike = Bike.new
+    bike = double(:bike)
     subject.dock(bike)
     expect(subject.any_bikes_docked?).to eq true
   end
@@ -30,7 +30,7 @@ describe DockingStation do
   end
 
   it "docking station should only take one bike" do
-    bike = Bike.new
+    bike = double(:bike)
     DockingStation::DEFAULT_CAPACITY.times {subject.dock(bike)}
     expect {subject.dock(bike)}.to raise_error("The docking station is full!")
   end
@@ -46,8 +46,8 @@ describe DockingStation do
   end
 
   it "docking should not release a broken bike" do
-    subject.docked_bikes << Bike.new(false)
-    subject.docked_bikes << Bike.new(true)
+    subject.docked_bikes << double(:bike, :condition => false)
+    subject.docked_bikes << double(:bike, :condition => true)
 
     expect(subject.release_bike.condition).to eq true
   end
