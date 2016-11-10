@@ -8,8 +8,8 @@ class DockingStation
   end
 
   def release_bike
-  	Bike.new
-    raise "There are no more bikes!" if @docked_bikes.empty?
+  	raise "There are no more bikes!" if @docked_bikes.empty?
+    Bike.new
   end
 
   def dock(new_bike)
