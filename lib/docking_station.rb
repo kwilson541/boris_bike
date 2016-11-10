@@ -12,7 +12,8 @@ class DockingStation
 
   def release_bike
   	raise "There are no more bikes!" if empty?
-    @docked_bikes.pop
+    index = @docked_bikes.index {|bike| bike.condition == true }
+    @docked_bikes.slice!(index)
   end
 
   def dock(new_bike)

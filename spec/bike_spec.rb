@@ -7,4 +7,6 @@ describe Bike do
     expect(bike.condition).to eq true
   end
 
+  
+
 end
