@@ -31,8 +31,18 @@ describe DockingStation do
 
   it "docking station should only take one bike" do
     bike = Bike.new
-    DockingStation::DEFAULT_CAPACITY.times {subject.dock(bike)} 
+    DockingStation::DEFAULT_CAPACITY.times {subject.dock(bike)}
     expect {subject.dock(bike)}.to raise_error("The docking station is full!")
+  end
+
+  it "new docking station instance must have a capacity instance variable" do
+    station = DockingStation.new(6)
+    expect(station.capacity).to eq 6
+  end
+
+  it "ensure default capacity of 20" do
+    station = DockingStation.new
+    expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
 end
