@@ -1,5 +1,9 @@
 class DockingStation
 
+  def initialize
+    @bike = Array.new
+  end
+
 attr_reader :bike
 
   def release_bike
@@ -11,7 +15,7 @@ attr_reader :bike
     if self.bike != nil
       raise "Docking station is full!"
     else
-      @bike = bike
+      @bike << bike
     end
   end
 
