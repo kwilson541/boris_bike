@@ -7,6 +7,10 @@ describe Bike do
     expect(bike.condition).to eq true
   end
 
-  
+  it "the condition of the bike can be changed" do
+    bike = Bike.new(true)
+    bike.report_broken
+    expect(bike.condition).to eq false
+  end
 
 end

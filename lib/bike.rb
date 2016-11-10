@@ -7,7 +7,11 @@ attr_reader :condition
   	end
 
 	def working?
-		true
+		@condition
+	end
+
+	def report_broken
+		@condition = false
 	end
 
 end
