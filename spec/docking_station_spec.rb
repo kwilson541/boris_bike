@@ -29,4 +29,10 @@ describe DockingStation do
     expect {subject.release_bike}.to raise_error("There are no more bikes!")
   end
 
+  it "docking station should only take one bike" do
+    bike = Bike.new
+    subject.dock(bike)  
+    expect {subject.dock(bike)}.to raise_error("The docking station is full!")
+  end
+
 end
