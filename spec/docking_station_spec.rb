@@ -31,7 +31,7 @@ describe DockingStation do
 
   it "docking station should only take one bike" do
     bike = Bike.new
-    subject.dock(bike)  
+    20.times {subject.dock(bike)} 
     expect {subject.dock(bike)}.to raise_error("The docking station is full!")
   end
 
