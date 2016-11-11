@@ -26,8 +26,8 @@ describe DockingStation do
     end
 
     it 'stops bikes being docked if the dock is full' do
-      subject.capacity.times {subject.dock_bike double(bike)}
-      expect{subject.dock_bike(double(bike))}.to raise_error("The dock is full.")
+      subject.capacity.times {subject.dock_bike(bike)}
+      expect{subject.dock_bike(bike)}.to raise_error("The dock is full.")
     end
   end
 
