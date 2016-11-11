@@ -16,8 +16,13 @@ describe DockingStation do
       bike = subject.dock_bike(Bike.new)
     end
 
-    it 'checks that it docks a bike' do
+    it 'checks that it docks a working bike' do
       bike = Bike.new
+      expect(subject.dock_bike(bike)).to include bike
+    end
+
+    it 'checks that it docks a broken bike' do
+      bike = Bike.new(false)
       expect(subject.dock_bike(bike)).to include bike
     end
 
