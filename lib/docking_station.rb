@@ -10,7 +10,10 @@ DEFAULT_CAPACITY = 20
   end
 
   def release_bike
-    @bikes.pop unless empty?
+    empty?
+    bike = @bikes.index{|bike| bike.status == true}
+    fail "No working bikes available." if bike.nil?
+    @bikes.slice!(bike)
   end
 
   def dock_bike(bike)
