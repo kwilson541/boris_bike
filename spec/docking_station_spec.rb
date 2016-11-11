@@ -12,29 +12,26 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-    it "creates an instance of class Bike" do
-      bike = subject.dock_bike(Bike.new)
-    end
 
     it 'checks that it docks a working bike' do
-      bike = Bike.new
+      bike = double(:bike)
       expect(subject.dock_bike(bike)).to include bike
     end
 
     it 'checks that it docks a broken bike' do
-      bike = Bike.new(false)
+      bike = double(:bike) #status should be set to false
       expect(subject.dock_bike(bike)).to include bike
     end
 
     it 'stops bikes being docked if the dock is full' do
-      subject.capacity.times {subject.dock_bike Bike.new}
-      expect{subject.dock_bike(Bike.new)}.to raise_error("The dock is full.")
+      subject.capacity.times {subject.dock_bike double(:bike)}
+      expect{subject.dock_bike(double(:bike))}.to raise_error("The dock is full.")
     end
   end
 
   describe '#release_bike' do
     it 'can release a bike' do
-      bike = Bike.new
+      bike = double(:bike)
       subject.dock_bike(bike)
       expect(subject.release_bike).to eq bike
   end
@@ -43,7 +40,7 @@ describe DockingStation do
     end
   end
     it 'does not release broken bikes' do
-      bike = Bike.new(false)
+      bike = double(:bike) # status should be set to false
       subject.dock_bike(bike)
       expect{subject.release_bike}.to raise_error("No working bikes available.")
     end
